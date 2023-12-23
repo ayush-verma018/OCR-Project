@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+//The schema for the database: all the data will be saved in DB according to this schema
 const userSchema = new mongoose.Schema({
   idNumber: {
     type: String,
