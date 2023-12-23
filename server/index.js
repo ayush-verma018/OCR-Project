@@ -14,7 +14,7 @@ dotenv.config();
 //5Sf3K0c5MgWfA7OG
 
 //Port and MongoURL retrieval from .env file used to save constants
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 7000;
 const MONGO_URL = process.env.MONGOURL;
 
 //Database Connectivity Code
