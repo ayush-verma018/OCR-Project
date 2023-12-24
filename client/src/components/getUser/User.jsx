@@ -30,55 +30,57 @@ const User = () => {
   };
   return (
     <div>
-      <h1 className="text-2xl font-bold text-center my-4">ID Card OCR</h1>
+      <h1 className="text-blue-500 text-2xl font-bold text-center my-4">
+        User Information
+      </h1>
       <table className="min-w-full divide-y divide-gray-200">
-        <thead className="bg-gray-50">
+        <thead className="bg-blue-300">
           <tr>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-6 py-3 text-left text-xs font-bold text-gray-800 uppercase tracking-wider"
             >
               S.No.
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-6 py-3 text-left text-xs font-bold text-gray-800 uppercase tracking-wider"
             >
               ID Number
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-6 py-3 text-left text-xs font-bold text-gray-800 uppercase tracking-wider"
             >
               First Name
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-6 py-3 text-left text-xs font-bold text-gray-800 uppercase tracking-wider"
             >
               Last Name
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-6 py-3 text-left text-xs font-bold text-gray-800 uppercase tracking-wider"
             >
               Date of Birth
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-6 py-3 text-left text-xs font-bold text-gray-800 uppercase tracking-wider"
             >
               Date of Issue
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-6 py-3 text-left text-xs font-bold text-gray-800 uppercase tracking-wider"
             >
               Date of Expiry
             </th>
             <th
               scope="col"
-              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              className="px-6 py-3 text-left text-xs font-bold text-gray-800 uppercase tracking-wider"
             >
               Action
             </th>
@@ -108,7 +110,7 @@ const User = () => {
                   <td className="flex gap-1 px-6 py-4 whitespace-nowrap">
                     <Link
                       to={`/edit/${user._id}`}
-                      className="flex gap-1 bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 mr-2 rounded"
+                      className="flex gap-1 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 mr-2 rounded"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
