@@ -154,11 +154,14 @@ const User = () => {
             })}
         </tbody>
       </table>
-      <Link className="flex justify-center" to={"/add"}>
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-4 rounded">
+      <div className="flex justify-center">
+        <Link
+          to={"/add"}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-4 rounded"
+        >
           Add User
-        </button>
-      </Link>
+        </Link>
+      </div>
     </div>
   );
 };

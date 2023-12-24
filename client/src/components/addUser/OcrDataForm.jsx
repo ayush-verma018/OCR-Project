@@ -1,10 +1,54 @@
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 const OcrDataForm = () => {
+  //Object is defined to decide the format of data to be recieved as state
+  const userData = {
+    idNumber: "",
+    fname: "",
+    lname: "",
+    doBirth: "",
+    doIssue: "",
+    doExpiry: "",
+  };
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [user, setUser] = useState(userData);
+
+  //this will set the user data according to the input in the input table
+  const inputChangeHandler = (e) => {
+    const { name, value } = e.target;
+    setUser({ ...user, [name]: value });
+  };
+
+  //this will submit the form and update the data of the user according to the id and the data filled in input tabs
+  const submitForm = async (e) => {
+    e.preventDefault();
+    await axios
+      .post("/create", user)
+      .then(() => {
+        toast.success("Saved Successfully", { position: "top-right" });
+        navigate("/");
+      })
+      .catch((error) => console.log(error));
+  };
+
+  useEffect(() => {
+    axios
+      .get(`/getOne/${id}`)
+      .then((response) => {
+        setUser(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [id]);
   return (
     <div>
       {/* Form */}
-      <form className="max-w-md mx-auto">
+      <form className="max-w-md mx-auto" onSubmit={submitForm}>
         <div className="mb-2">
           <label
             htmlFor="idNumber"
@@ -14,6 +58,7 @@ const OcrDataForm = () => {
           </label>
           <input
             type="text"
+            onChange={inputChangeHandler}
             id="idNumber"
             name="idNumber"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -29,6 +74,7 @@ const OcrDataForm = () => {
           </label>
           <input
             type="text"
+            onChange={inputChangeHandler}
             id="fname"
             name="fname"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -44,6 +90,7 @@ const OcrDataForm = () => {
           </label>
           <input
             type="text"
+            onChange={inputChangeHandler}
             id="lname"
             name="lname"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -59,6 +106,7 @@ const OcrDataForm = () => {
           </label>
           <input
             type="text"
+            onChange={inputChangeHandler}
             id="doBirth"
             name="doBirth"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -74,6 +122,7 @@ const OcrDataForm = () => {
           </label>
           <input
             type="text"
+            onChange={inputChangeHandler}
             id="doIssue"
             name="doIssue"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -89,6 +138,7 @@ const OcrDataForm = () => {
           </label>
           <input
             type="text"
+            onChange={inputChangeHandler}
             id="doExpiry"
             name="doExpiry"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
