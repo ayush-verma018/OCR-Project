@@ -1,9 +1,5 @@
-import multer from "multer";
 import User from "../model/userModal.js";
-import { promises as fspromises } from "fs";
-import { fileURLToPath } from "url";
-import { dirname } from "path";
-import Tesseract from "tesseract.js";
+import tesseract from "node-tesseract-ocr";
 
 //controller for creating new data and storing in the DB
 export const create = async (req, res) => {
@@ -82,45 +78,30 @@ export const deleteUser = async (req, res) => {
   }
 };
 
-//-----------------------------------------------
-
-var Storage = multer.diskStorage({
-  destination: (req, file, callback) => {
-    callback(null, "/images");
-  },
-  filename: (req, file, callback) => {
-    callback(null, file.originalname);
-  },
-});
-
-var upload = multer({
-  storage: Storage,
-}).single("image", 1);
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-var image = await fspromises.readFile(__dirname + "/images/1.png", {
-  encoding: null,
-});
-
-console.log(image);
-
-Tesseract.recognize(image)
-  .progress((p) => {
-    console.log("progress", p);
-  })
-  .then((result) => {
-    res.send(result.html);
-  });
-
-export const uploadImage = async (req, res) => {
-  console.log(req.body);
-  upload(req, res, (err) => {
-    if (err) {
-      console.log(err);
-      return res.send("Something went wrong");
-    }
-    return res.send("File Uploaded");
-  });
+export const ocrdata = async (req, res) => {
+  try {
+    let result = {};
+    const image = req.body.link;
+    const config = {
+      lang: "eng",
+      oem: 1,
+      psm: 3,
+    };
+    console.log(image);
+    tesseract
+      .recognize(image, config)
+      .then((text) => {
+        console.log("Result:", text);
+        result = JSON.stringify(text);
+        res.send(result);
+      })
+      .catch((error) => {
+        console.log(error.message);
+        res.send("something went wrong");
+      });
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
 };
+
+//-----------------------------------------------
