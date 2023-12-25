@@ -5,6 +5,7 @@ import {
   getAll,
   getOne,
   update,
+  uploadImage,
 } from "../controller/userController.js";
 
 const route = express.Router();
@@ -15,4 +16,5 @@ route.get("/getAll", getAll);
 route.get("/getOne/:id", getOne);
 route.put("/update/:id", update);
 route.delete("/deleteUser/:id", deleteUser);
+route.post("/upload", uploadImage);
 export default route;
