@@ -49,7 +49,7 @@ const Edit = () => {
   return (
     <div>
       {/* Heading */}
-      <h1 className="text-2xl font-bold text-center my-4">ID Card OCR Form</h1>
+      <h1 className="text-2xl font-bold text-center my-4">Edit User Data</h1>
 
       {/* Form */}
       <form className="max-w-md mx-auto" onSubmit={submitForm}>
