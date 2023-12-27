@@ -1,9 +1,12 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-const OcrDataForm = () => {
+const OcrDataForm = (imgdata) => {
+  useEffect(() => {
+    console.log(imgdata);
+  }, [imgdata]);
   //Object is defined to decide the format of data to be recieved as state
   const userData = {
     idNumber: "",
@@ -13,38 +16,51 @@ const OcrDataForm = () => {
     doIssue: "",
     doExpiry: "",
   };
-  const { id } = useParams();
   const navigate = useNavigate();
   const [user, setUser] = useState(userData);
 
-  //this will set the user data according to the input in the input table
-  const inputChangeHandler = (e) => {
-    const { name, value } = e.target;
-    setUser({ ...user, [name]: value });
+  //this will set the user data according to the input in the input tabs
+  const inputIdHandler = () => {
+    const { idNumber, value } = value;
+    setUser({ ...user, [idNumber]: value });
+  };
+
+  const inputFnameHandler = (e) => {
+    const { fname, value } = e.target;
+    setUser({ ...user, [fname]: value });
+  };
+
+  const inputLnameHandler = (e) => {
+    const { lname, value } = e.target;
+    setUser({ ...user, [lname]: value });
+  };
+
+  const inputBirthHandler = (e) => {
+    const { fname, value } = e.target;
+    setUser({ ...user, [fname]: value });
+  };
+
+  const inputIssueHandler = (e) => {
+    const { fname, value } = e.target;
+    setUser({ ...user, [fname]: value });
+  };
+
+  const inputExpiryHandler = (e) => {
+    const { fname, value } = e.target;
+    setUser({ ...user, [fname]: value });
   };
 
   //this will submit the form and update the data of the user according to the id and the data filled in input tabs
   const submitForm = async (e) => {
     e.preventDefault();
     await axios
-      .post("/create", user)
+      .post("/create", imgdata.imgdata)
       .then(() => {
         toast.success("Saved Successfully", { position: "top-right" });
         navigate("/");
       })
       .catch((error) => console.log(error));
   };
-
-  useEffect(() => {
-    axios
-      .get(`/getOne/${id}`)
-      .then((response) => {
-        setUser(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [id]);
   return (
     <div>
       {/* Form */}
@@ -58,9 +74,10 @@ const OcrDataForm = () => {
           </label>
           <input
             type="text"
-            onChange={inputChangeHandler}
+            onChange={inputIdHandler}
             id="idNumber"
             name="idNumber"
+            value={imgdata?.imgdata?.idNumber}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             placeholder="Enter ID Number"
           />
@@ -74,9 +91,10 @@ const OcrDataForm = () => {
           </label>
           <input
             type="text"
-            onChange={inputChangeHandler}
+            onChange={inputFnameHandler}
             id="fname"
             name="fname"
+            value={imgdata?.imgdata?.fname}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             placeholder="Enter First Name"
           />
@@ -90,9 +108,10 @@ const OcrDataForm = () => {
           </label>
           <input
             type="text"
-            onChange={inputChangeHandler}
+            onChange={inputLnameHandler}
             id="lname"
             name="lname"
+            value={imgdata.imgdata.lname}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             placeholder="Enter Last Name"
           />
@@ -106,9 +125,10 @@ const OcrDataForm = () => {
           </label>
           <input
             type="text"
-            onChange={inputChangeHandler}
+            onChange={inputBirthHandler}
             id="doBirth"
             name="doBirth"
+            value={imgdata.imgdata.doBirth}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             placeholder="Enter Date of Birth"
           />
@@ -122,9 +142,10 @@ const OcrDataForm = () => {
           </label>
           <input
             type="text"
-            onChange={inputChangeHandler}
+            onChange={inputIssueHandler}
             id="doIssue"
             name="doIssue"
+            value={imgdata.imgdata.doIssue}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             placeholder="Enter Date of Issue"
           />
@@ -138,9 +159,10 @@ const OcrDataForm = () => {
           </label>
           <input
             type="text"
-            onChange={inputChangeHandler}
+            onChange={inputExpiryHandler}
             id="doExpiry"
             name="doExpiry"
+            value={imgdata.imgdata.doExpiry}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             placeholder="Enter Date of Expiry"
           />

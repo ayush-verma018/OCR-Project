@@ -1,13 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
 
-const PhotoUploadCard = () => {
+const PhotoUploadCard = (imgdata, setImgData) => {
   const [imageLink, setImageLink] = useState("");
-  const [ocrText, setOcrText] = useState("");
   const extractHandler = () => {
     axios
       .post("/ocrdata", { link: imageLink })
-      .then((res) => setOcrText(res.data))
+      .then((res) => setImgData(res.data))
       .catch((err) => console.log(err));
   };
   return (
@@ -35,10 +34,10 @@ const PhotoUploadCard = () => {
         <h2 className="text-white text-2xl font-bold my-4">Extracted Data</h2>
         <div
           className={`bg-white p-2 rounded-xl ${
-            ocrText === "" ? "h-32" : "h-auto"
+            imgdata === "" ? "h-32" : "h-auto"
           }`}
         >
-          {ocrText || ""}
+          {JSON.stringify(imgdata.user) || ""}
         </div>
       </div>
     </div>
