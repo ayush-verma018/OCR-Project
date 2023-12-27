@@ -1,5 +1,8 @@
 ﻿# OCR-Project
-to run this project, you must do "npm install" in respective terminals, and all the files will work.
+to run this project, you must do "npm install" in respective terminals, and all the files will work
+
+Frontend Deployed Link
+https://capable-caramel-1dc974.netlify.app/
 
 This project constitutes a comprehensive Image OCR CRUD Application, meticulously crafted using the MERN stack and TailwindCSS and integrated with the Tesseract API.
 
