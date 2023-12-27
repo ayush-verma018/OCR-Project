@@ -5,11 +5,12 @@ Project Link
 https://dainty-sunburst-8938fa.netlify.app/
 
 Link for frontend : https://github.com/ayush-verma018/OCR-Project-Frontend
+
 Link for backend : https://github.com/ayush-verma018/OCR-Project-Backend
 
-This project constitutes a comprehensive Image OCR CRUD Application, meticulously crafted using the MERN stack and TailwindCSS and integrated with the Tesseract API.
+This project constitutes a comprehensive Image OCR CRUD Application, meticulously crafted using the MERN stack and TailwindCSS and integrated with the Google Vision API.
 
-The application's user interface presents a structured tabular representation of all user data. To populate this database with relevant information, users need to input the image link of their ID card. The application harnesses the power of the Tesseract API to intelligently extract pertinent data from the detected text, ensuring seamless storage in the database for easy retrieval and analysis.
+The application's user interface presents a structured tabular representation of all user data. To populate this database with relevant information, users need to input the image link of their ID card. The application harnesses the power of the Google Vision API to intelligently extract pertinent data from the detected text, ensuring seamless storage in the database for easy retrieval and analysis.
 
 Home Page:
 ![Screenshot (27)](https://github.com/ayush-verma018/OCR-Project/assets/77916121/246944cc-15bf-4299-98f6-5f542bac02d8)
